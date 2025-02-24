@@ -1,0 +1,54 @@
+import yfinance as yf
+import numpy as np
+import pandas as pd
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import LSTM, Dense
+from sklearn.preprocessing import MinMaxScaler
+import pickle
+
+# === 1. Data Collection ===
+# Fetch historical data for Bitcoin (BTC-USD) from Yahoo Finance
+ticker = "BTC-USD"
+data = yf.download(ticker, start="2014-10-01", end="2025-01-30")
+# We assume 'Close' column is the daily closing price
+data = data[['Close']]
+data.rename(columns={'Close': 'price'}, inplace=True)
+
+# Save data locally if needed (optional)
+data.to_csv("historical_prices.csv", index=True)
+
+# === 2. Data Preprocessing ===
+prices = data['price'].values.reshape(-1, 1)
+
+# Normalize the data
+scaler = MinMaxScaler(feature_range=(0, 1))
+prices_scaled = scaler.fit_transform(prices)
+
+# Create sequences for training
+def create_dataset(dataset, time_steps=10):
+    X, y = [], []
+    for i in range(len(dataset) - time_steps):
+        X.append(dataset[i : i + time_steps, 0])
+        y.append(dataset[i + time_steps, 0])
+    return np.array(X), np.array(y)
+
+time_steps = 10
+X, y = create_dataset(prices_scaled, time_steps)
+X = X.reshape((X.shape[0], X.shape[1], 1))
+
+# === 3. Build and Train the LSTM Model ===
+model = Sequential([
+    LSTM(50, activation='relu', input_shape=(time_steps, 1)),
+    Dense(1)
+])
+model.compile(optimizer='adam', loss='mse')
+
+# Train the model
+model.fit(X, y, epochs=50, batch_size=16, verbose=1)
+
+# === 4. Save the Model and Scaler ===
+model.save("model.h5")
+with open("scaler.pkl", "wb") as f:
+    pickle.dump(scaler, f)
+
+print("Model and scaler saved successfully.")
