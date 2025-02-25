@@ -1,3 +1,4 @@
-/historical_prices.csv
-/model.h5
-/scaler.pkl
+*/historical_prices.csv
+*/model.h5
+*/scaler.pkl
+/__pycache__

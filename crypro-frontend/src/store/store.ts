@@ -5,6 +5,8 @@ import portfolioReducer from "./reducers/buyCryptoReducer";
 import threshHoldReducer from "./reducers/threshHoldReducer";
 import { api } from "../services/api";
 import { coinsAPI } from "../services/coinApi";
+import { coinbaseApi } from "../services/latestPrices-API";
+import { predictionApi } from "../services/predictionApi";
 
 export const store = configureStore({
   reducer: {
@@ -13,9 +15,11 @@ export const store = configureStore({
     thresholds: threshHoldReducer,
     [api.reducerPath]: api.reducer,
     [coinsAPI.reducerPath]: coinsAPI.reducer,
+    [coinbaseApi.reducerPath]: coinbaseApi.reducer,
+    [predictionApi.reducerPath]: predictionApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(api.middleware, coinsAPI.middleware),
+    getDefaultMiddleware().concat(api.middleware, coinsAPI.middleware, coinbaseApi.middleware, predictionApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

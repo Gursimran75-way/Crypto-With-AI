@@ -8,17 +8,19 @@ import pickle
 
 # === 1. Data Collection ===
 # Fetch historical data for Bitcoin (BTC-USD) from Yahoo Finance
-ticker = "BTC-USD"
-data = yf.download(ticker, start="2014-10-01", end="2025-01-30")
+ticker = "ETH-USD"
+data = yf.download(ticker, start="2014-10-01", end="2025-02-24")
 # We assume 'Close' column is the daily closing price
 data = data[['Close']]
 data.rename(columns={'Close': 'price'}, inplace=True)
 
-# Save data locally if needed (optional)
-data.to_csv("historical_prices.csv", index=True)
+# Save data locally if needed (optional)    
+data.to_csv("C:\\Users\\Dell\\OneDrive\\Desktop\\Crypto-Portfolio-Tracker\\AI-backend\\Etherium\\historical_prices.csv", index=True)
 
 # === 2. Data Preprocessing ===
 prices = data['price'].values.reshape(-1, 1)
+
+prices = prices[:-100] # Exclude last 100 days for testing
 
 # Normalize the data
 scaler = MinMaxScaler(feature_range=(0, 1))
@@ -47,8 +49,8 @@ model.compile(optimizer='adam', loss='mse')
 model.fit(X, y, epochs=50, batch_size=16, verbose=1)
 
 # === 4. Save the Model and Scaler ===
-model.save("model.h5")
-with open("scaler.pkl", "wb") as f:
+model.save("C:\\Users\\Dell\\OneDrive\\Desktop\\Crypto-Portfolio-Tracker\\AI-backend\\Etherium\\model.h5")
+with open("C:\\Users\\Dell\\OneDrive\\Desktop\\Crypto-Portfolio-Tracker\\AI-backend\\Etherium\\scaler.pkl", "wb") as f:
     pickle.dump(scaler, f)
 
 print("Model and scaler saved successfully.")

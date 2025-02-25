@@ -1,5 +1,5 @@
-# import matplotlib
-# matplotlib.use("Agg")
+import matplotlib
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 import pickle
@@ -11,14 +11,14 @@ from tensorflow.keras.models import load_model
 from sklearn.preprocessing import MinMaxScaler
 
 # Load dataset and other assets
-data = pd.read_csv("./historical_prices.csv", skiprows=3, header=None, names=["Date", "price"])
+data = pd.read_csv("C:\\Users\\Dell\\OneDrive\\Desktop\\Crypto-Portfolio-Tracker\\AI-backend\\Bitcoin\\historical_prices.csv", skiprows=3, header=None, names=["Date", "price"])
 data['price'] = pd.to_numeric(data['price'], errors='coerce')
 data = data.dropna(subset=['price'])
 prices = data['price'].values.reshape(-1, 1)
 
 # Load the trained model and scaler
-model = load_model("model.h5")
-with open("scaler.pkl", "rb") as f:
+model = load_model("C:\\Users\\Dell\\OneDrive\\Desktop\\Crypto-Portfolio-Tracker\\AI-backend\\Bitcoin\\model.h5")
+with open("C:\\Users\\Dell\\OneDrive\\Desktop\\Crypto-Portfolio-Tracker\\AI-backend\\Bitcoin\\scaler.pkl", "rb") as f:
     scaler = pickle.load(f)
 
 prices_scaled = scaler.transform(prices)

@@ -61,7 +61,7 @@ const ThresholdManager: React.FC = () => {
   );
 
   return (
-    <Box>
+    <Box border={1} borderColor={"#ccc"} p={4} borderRadius={1} boxShadow={7}>
       <Typography variant="h6" gutterBottom>
         Set Price Threshold
       </Typography>

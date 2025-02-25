@@ -6,7 +6,6 @@ import Loadable from "./utils/LazyLoading";
 import NotFound from "./pages/NotFoundPage";
 import OpenRoute from "./components/openRoutes/OpenRoutes";
 import PrivateRoute from "./components/privateRoutes/PrivateRoute";
-import TestPage from "./pages/TestPage";
 
 const LoginPage = Loadable(lazy(() => import("./pages/LoginPage")));
 const RegisterPage = Loadable(lazy(() => import("./pages/RegisterPage")));
@@ -18,6 +17,9 @@ const ThresholdListPage = Loadable(
 );
 const ThreshHoldManagerPage = Loadable(
   lazy(() => import("./pages/ThreshHoldManagerPage"))
+);
+const Prediction = Loadable(
+  lazy(() => import("./pages/Prediction"))
 );
 
 const App = () => {
@@ -92,10 +94,10 @@ const App = () => {
           ),
         },
         {
-          path: "app/test",
+          path: "app/predictions",
           element: (
             <PrivateRoute>
-              <TestPage />
+              <Prediction />
             </PrivateRoute>
           ),
         },

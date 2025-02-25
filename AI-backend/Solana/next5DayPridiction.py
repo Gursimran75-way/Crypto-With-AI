@@ -12,14 +12,14 @@ import base64
 import time
 
 # Load historical data (for plotting history)
-data = pd.read_csv("./historical_prices.csv", skiprows=3, header=None, names=["Date", "price"])
+data = pd.read_csv("C:\\Users\\Dell\\OneDrive\\Desktop\\Crypto-Portfolio-Tracker\\AI-backend\\Solana\\historical_prices.csv", skiprows=3, header=None, names=["Date", "price"])
 data['Date'] = pd.to_datetime(data['Date'], errors='coerce')
 data['price'] = pd.to_numeric(data['price'], errors='coerce')
 data = data.dropna(subset=['Date', 'price'])
 
 # Load the trained model and scaler
-model = load_model("model.h5")
-with open("scaler.pkl", "rb") as f:
+model = load_model("C:\\Users\\Dell\\OneDrive\\Desktop\\Crypto-Portfolio-Tracker\\AI-backend\\Solana\\model.h5")
+with open("C:\\Users\\Dell\\OneDrive\\Desktop\\Crypto-Portfolio-Tracker\\AI-backend\\Solana\\scaler.pkl", "rb") as f:
     scaler = pickle.load(f)
 
 # Precompute normalized prices from historical data.
@@ -84,8 +84,9 @@ def generate_next_5_prediction_plot(input_prices: list[float]) -> str:
     plt.savefig(buf, format="png")
     plt.close()
     buf.seek(0)
-    # image_base64 = base64.b64encode(buf.read()).decode("utf-8")
-    # buf.close()
+    image_base64 = base64.b64encode(buf.read()).decode("utf-8")
+    buf.close()
 
 
-    return buf
+    # return buf
+    return image_base64
