@@ -59,7 +59,7 @@ This project is a **Crypto Portfolio Tracker** that includes an **AI-powered pri
    ```bash
    npm start
    ```
-
+   
 ## Usage
 - **View Crypto Prices** 📊: Displays live crypto prices.
 - **Predict Future Prices** 🔮: Enter recent data points and get AI-driven predictions.
