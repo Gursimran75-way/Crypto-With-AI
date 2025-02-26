@@ -1,52 +1,89 @@
-# 🚀 Crypto Portfolio Tracker
+# Crypto Portfolio Tracker - AI Price Prediction
 
-A modern, responsive frontend dashboard for tracking cryptocurrency portfolios with **real-time price updates** (API polling every 1 minute), profit/loss analytics, and price threshold alerts. 
+## Overview
+This project is a **Crypto Portfolio Tracker** that includes an **AI-powered price prediction feature** for **Bitcoin (BTC), Solana (SOL), and Ethereum (ETH)**. The AI feature utilizes an **LSTM (Long Short-Term Memory) model** to analyze historical price data and predict future prices.
 
-This project is designed for **cryptocurrency investors, trading platforms, and tax reporting tools**.
+## Features
+### 🌟 **Crypto Portfolio Tracking**
+- View real-time prices of BTC, SOL, and ETH.
+- Track your holdings and portfolio value.
 
-## 📌 Features
+### 🤖 **AI-Powered Price Prediction**
+- Uses an **LSTM neural network** for price forecasting.
+- Trained on **historical price data**.
+- Predicts the next price based on **the last 10 time steps**.
 
-✅ **Real-Time Price Updates**  
-🔄 Fetches live cryptocurrency prices via API polling every **1 minute**.  
+### 📈 **Visualization**
+- Generates a graph of **actual vs. predicted prices**.
+- Interactive UI to view historical trends and predictions.
 
-✅ **Portfolio Management**  
-📊 Add, remove, and track your cryptocurrency holdings.  
-💰 Calculates **profit and loss** for individual assets and the entire portfolio.  
+## AI Model - How It Works
+1. **Data Collection:** Fetches historical prices from Yahoo Finance.
+2. **Data Preprocessing:**
+   - Converts prices to numerical format.
+   - Applies MinMax Scaling for normalization.
+   - Splits data into training and testing sets.
+3. **Model Training:**
+   - Uses an **LSTM-based neural network**.
+   - Trained to predict the next price based on the last 10 prices.
+4. **Prediction:**
+   - Takes recent 10 prices as input.
+   - Predicts the next price.
+   - Displays the results in an interactive graph.
 
-✅ **Interactive Charts & Analytics**  
-📈 Displays portfolio trends with **Recharts** (line/bar graphs).  
-📊 Visualizes historical performance and profit/loss.  
+## Installation & Setup
+### 📌 **Backend (AI Model Processing)**
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Gursimran75-way/crypto-AI.git
+   ```
+2. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. Run the AI backend:
+   ```bash
+   python app.py
+   ```
 
-✅ **Price Threshold Alerts**  
-🚨 Set **upper and lower price limits** for cryptocurrencies.  
-🔔 Get notified when the price crosses your set threshold.  
+### 📌 **Frontend (Crypto Dashboard)**
+1. Navigate to the frontend directory:
+   ```bash
+   cd ../frontend
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the frontend application:
+   ```bash
+   npm start
+   ```
 
-✅ **User-Friendly Interface**  
-🎨 Built with **Material-UI**, **Framer Motion**, and smooth animations.  
+## Usage
+- **View Crypto Prices** 📊: Displays live crypto prices.
+- **Predict Future Prices** 🔮: Enter recent data points and get AI-driven predictions.
+- **Analyze Trends** 📈: Visualize predictions vs. actual prices.
 
-✅ **Form Validation**  
-📝 Uses **React Hook Form + Yup** for **error-free threshold settings**.  
+## Technologies Used
+### 🔧 **Frontend**
+- React.js
+- Tailwind CSS
+- Chart.js (for visualization)
 
-## 🏆 Use Cases
+### 🔧 **Backend (AI Processing)**
+- Python (Flask API)
+- TensorFlow / Keras (LSTM Model)
+- Scikit-learn (Data Preprocessing)
+- Pandas, NumPy (Data Handling)
+- Matplotlib, Seaborn (Visualization)
 
-- **For Investors:** 📊 Monitor & manage cryptocurrency investments in real-time.  
-- **For Trading Platforms:** 🏦 Integration with exchanges for portfolio tracking.  
-- **For Tax Reporting:** 📜 Track profits/losses for tax calculations.  
+## Future Enhancements
+✅ Support for more cryptocurrencies 📌
+✅ Advanced AI models (GRU, Transformer-based) 🚀
+✅ Improved UI for better analysis 📊
 
-## 🛠️ Tech Stack
+## Contributing
+Feel free to contribute! Fork the repo and submit a pull request. 💡
 
-- **Frontend:** React + TypeScript  
-- **State Management:** Redux Toolkit (RTK Query for API)  
-- **UI:** Material-UI (MUI)  
-- **Charting:** Recharts  
-- **Animations:** Framer Motion  
-- **Form Handling:** React Hook Form + Yup  
-- **Notifications:** React Toastify  
-- **API Data:** CoinGecko API (Polling every **1 min** for real-time updates)  
 
-## 🚀 Installation
-
-1️⃣ **Clone the Repository**  
-```bash
-git clone https://github.com/Gursimran75-way/crypto-portfolio-tracker.git
-cd crypto-portfolio-tracker
