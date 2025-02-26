@@ -18,11 +18,11 @@ data.rename(columns={'Close': 'price'}, inplace=True)
 data.to_csv("C:\\Users\\Dell\\OneDrive\\Desktop\\Crypto-Portfolio-Tracker\\AI-backend\\Bitcoin\\historical_prices.csv", index=True)
 
 # === 2. Data Preprocessing ===
-prices = data['price'].values.reshape(-1, 1)
+prices = data['price'].values.reshape(-1, 1)#convert to 2D numpy array[ [1],[2],[3] ]
 
 prices = prices[:-100] # Exclude last 100 days for testing
 
-# Normalize the data
+# Normalize the data to (0,1)
 scaler = MinMaxScaler(feature_range=(0, 1))
 prices_scaled = scaler.fit_transform(prices)
 
@@ -36,7 +36,7 @@ def create_dataset(dataset, time_steps=10):
 
 time_steps = 10
 X, y = create_dataset(prices_scaled, time_steps)
-X = X.reshape((X.shape[0], X.shape[1], 1))
+X = X.reshape((X.shape[0], X.shape[1], 1))# Convert X to 3D array (no'of samples,time_steps,features)
 
 # === 3. Build and Train the LSTM Model ===
 model = Sequential([

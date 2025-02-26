@@ -19,6 +19,7 @@ const useStyle = (theme: Theme) =>
       backgroundColor: "lightgrey",
       height: "100vh",
       width: "100vw",
+      overflowX: "hidden",
       [theme.breakpoints.up("md")]: {
         backgroundColor: "white",
       },
@@ -71,7 +72,7 @@ const Basic = () => {
       <CssBaseline />
       <Navbar />
       <PriceThresholdAlerts />
-      <Box display="flex" flexDirection="row" sx={{ overflow: "hidden" }}>
+      <Box display="flex" flexDirection="row">
         <Sidebar />
         <Outlet />
       </Box>

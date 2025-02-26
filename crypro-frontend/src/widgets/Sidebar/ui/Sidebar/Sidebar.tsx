@@ -11,10 +11,6 @@ export const Sidebar: React.FC = () => {
   const dispatch = useAppDispatch();
   const drawerWidth = 240;
 
-  const onLogout = useCallback(() => {
-    dispatch(UserActions.logout());
-  }, [dispatch]);
-
   return (
     <Drawer
       sx={{
