@@ -53,7 +53,7 @@ const ProfilePage = () => {
   }
 
   return (
-    <Box>
+    <Box sx={{ mx: "auto", display: "flex",  alignItems: "center" }}>  
       <UserProfile data={data} />
     </Box>
   );

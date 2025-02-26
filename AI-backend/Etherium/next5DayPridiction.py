@@ -6,10 +6,9 @@ import seaborn as sns
 import pickle
 import pandas as pd
 from tensorflow.keras.models import load_model
-from sklearn.preprocessing import MinMaxScaler
+# from sklearn.preprocessing import MinMaxScaler
 from io import BytesIO
 import base64
-import time
 
 # Load historical data (for plotting history)
 data = pd.read_csv("C:\\Users\\Dell\\OneDrive\\Desktop\\Crypto-Portfolio-Tracker\\AI-backend\\Etherium\\historical_prices.csv", skiprows=3, header=None, names=["Date", "price"])

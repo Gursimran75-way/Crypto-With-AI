@@ -8,7 +8,8 @@ from io import BytesIO
 import base64
 import seaborn as sns
 from tensorflow.keras.models import load_model
-from sklearn.preprocessing import MinMaxScaler
+from sklearn.metrics import mean_absolute_error, mean_squared_error
+# from sklearn.preprocessing import MinMaxScaler
 
 # Load dataset and other assets
 data = pd.read_csv("C:\\Users\\Dell\\OneDrive\\Desktop\\Crypto-Portfolio-Tracker\\AI-backend\\Solana\\historical_prices.csv", skiprows=3, header=None, names=["Date", "price"])
@@ -39,6 +40,21 @@ def generate_prediction_plot():
     test_X = np.array(test_X).reshape(-1, time_steps, 1)
     test_y = np.array(test_y).reshape(-1, 1)
 
+    
+    # Make predictions
+    predictions_scaled = model.predict(test_X)
+    predictions = scaler.inverse_transform(predictions_scaled)
+    actual_prices = scaler.inverse_transform(test_y)
+
+    # Compute error metrics
+    mae = mean_absolute_error(actual_prices, predictions)  # Mean Absolute Error
+    mse = mean_squared_error(actual_prices, predictions)  # Mean Squared Error
+    rmse = np.sqrt(mse)  # Root Mean Squared Error
+
+    # Compute accuracy percentage
+    mape = np.mean(np.abs((actual_prices - predictions) / actual_prices)) * 100  # Mean Absolute Percentage Error
+    accuracy = 100 - mape  # Accuracy in percentage
+
     predictions_scaled = model.predict(test_X)
     predictions = scaler.inverse_transform(predictions_scaled)
     actual_prices = scaler.inverse_transform(test_y)
@@ -49,7 +65,7 @@ def generate_prediction_plot():
     plt.plot(predictions, label="Predicted Prices", color="red", linestyle="dashed", linewidth=2)
     plt.xlabel("Time")
     plt.ylabel("Price")
-    plt.title("Actual vs Predicted Prices (Last 100 Days)")
+    plt.title(f"Actual vs Predicted Prices (Last 100 Days)\nAccuracy: {accuracy:.2f}%")
     plt.legend()
 
     buf = BytesIO()
@@ -59,4 +75,4 @@ def generate_prediction_plot():
     image_base64 = base64.b64encode(buf.read()).decode("utf-8")
     buf.close()
 
-    return image_base64
+    return image_base64, {"MAE": mae, "MSE": mse, "RMSE": rmse, "Accuracy (%)": accuracy}

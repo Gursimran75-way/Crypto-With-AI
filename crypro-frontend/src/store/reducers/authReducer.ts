@@ -16,8 +16,8 @@ interface AuthState {
 const initialState: AuthState = {
   accessToken: localStorage.getItem("access_token") ?? "",
   refreshToken: localStorage.getItem("refresh_token") ?? "",
-  isLoggedIn: true,
-  // isLoggedIn: Boolean(localStorage.getItem("access_token")) || false,
+  // isLoggedIn: true,
+  isLoggedIn: Boolean(localStorage.getItem("access_token")) || false,
   loading: false,
   user: null,
 };

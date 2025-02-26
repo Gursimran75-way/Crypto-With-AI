@@ -6,7 +6,7 @@ import seaborn as sns
 import pickle
 import pandas as pd
 from tensorflow.keras.models import load_model
-from sklearn.preprocessing import MinMaxScaler
+# from sklearn.preprocessing import MinMaxScaler
 from io import BytesIO
 import base64
 import time

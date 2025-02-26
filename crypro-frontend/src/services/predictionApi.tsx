@@ -10,6 +10,7 @@ export const predictionApi = createApi({
         next_5_day_plot: string;
         accuracy_plot: string;
         predicted_price: number;
+        accuracy_metrics: { Accuracy: number };
       },
       number[]
     >({
@@ -25,6 +26,7 @@ export const predictionApi = createApi({
         next_5_day_plot: string;
         accuracy_plot: string;
         predicted_price: number;
+        accuracy_metrics: { Accuracy: number };
       },
       number[]
     >({
@@ -40,6 +42,7 @@ export const predictionApi = createApi({
         next_5_day_plot: string;
         accuracy_plot: string;
         predicted_price: number;
+        accuracy_metrics: { Accuracy: number };
       },
       number[]
     >({

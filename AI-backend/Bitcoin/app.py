@@ -2,7 +2,7 @@ from pydantic import BaseModel
 import numpy as np
 from tensorflow.keras.models import load_model
 import pickle
-from fastapi.responses import StreamingResponse
+# from fastapi.responses import StreamingResponse
 
 from .accruacy import generate_prediction_plot as generate_accuracy_plot
 from .next5DayPridiction import generate_next_5_prediction_plot
@@ -38,6 +38,5 @@ def predict_plot_bitcoin(input_data: PredictionInput):
             "predicted_price": float(prediction[0][0]),
             "accuracy_metrics" : accuracy_metrics
         }
-        # return StreamingResponse(buf, media_type="image/png")
     except ValueError as ve:
         print("Error: ", ve)

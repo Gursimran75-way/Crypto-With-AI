@@ -8,7 +8,7 @@ from io import BytesIO
 import base64
 import seaborn as sns
 from tensorflow.keras.models import load_model
-from sklearn.preprocessing import MinMaxScaler
+# from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 
 # Load dataset
@@ -78,7 +78,7 @@ def generate_prediction_plot():
     return image_base64, {"MAE": mae, "MSE": mse, "RMSE": rmse, "Accuracy (%)": accuracy}
 
 
-
+# *......................................................................
 
 # # Example usage
 # image_base64, accuracy_metrics = generate_prediction_plot()

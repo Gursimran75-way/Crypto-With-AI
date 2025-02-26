@@ -19,6 +19,7 @@ class PredictionInput(BaseModel):
     last_prices: list[float]  # Exactly 10 price values
 
 
+# *==================== BTC-API Endpoints ====================*
 @app.post("/predict-plot/bitcoin")
 def predict_plot_BTC(input_data: PredictionInput):
     try:
@@ -28,6 +29,7 @@ def predict_plot_BTC(input_data: PredictionInput):
         raise HTTPException(status_code=400, detail=str(ve))
     
 
+# *==================== ETH-API Endpoints ====================*
 @app.post("/predict-plot/etherium")
 def predict_plot_ETH(input_data: PredictionInput):
     try:
@@ -36,6 +38,7 @@ def predict_plot_ETH(input_data: PredictionInput):
     except ValueError as ve:
         raise HTTPException(status_code=400, detail=str(ve))
     
+# *==================== SOL-API Endpoints ====================*
 @app.post("/predict-plot/solana")
 def predict_plot_SOL(input_data: PredictionInput):
     try:
