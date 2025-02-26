@@ -35,7 +35,7 @@ This project is a **Crypto Portfolio Tracker** that includes an **AI-powered pri
 ### 📌 **Backend (AI Model Processing)**
 1. Clone the repository:
    ```bash
-   git clone https://github.com/Gursimran75-way/crypto-AI.git
+   git clone https://github.com/Gursimran75-way/crypto-With-AI.git
    ```
 2. Install dependencies:
    ```bash
